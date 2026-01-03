@@ -322,10 +322,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-snow-100 dark:bg-gray-900 flex justify-center transition-colors duration-300">
-      {/* Changed h-full constraints for mobile scroll fix: h-[100dvh] instead of min-h-screen */}
-      <div className="w-full max-w-lg bg-white/50 dark:bg-gray-800/50 md:bg-white md:dark:bg-gray-800 shadow-2xl h-[100dvh] md:h-[90vh] md:my-auto md:rounded-[40px] overflow-hidden relative transition-colors duration-300 flex flex-col">
+      {/* 
+         Updated container logic for Native App support:
+         1. Added 'safe-top' and 'safe-bottom' classes for notch/home-bar support.
+         2. Kept the desktop layout (md:...) logic for browser testing.
+         3. On mobile (default), it now fills the screen fully rather than looking like a card, 
+            which feels more native.
+      */}
+      <div className="w-full max-w-lg bg-white/50 dark:bg-gray-800/50 md:bg-white md:dark:bg-gray-800 shadow-none md:shadow-2xl h-[100dvh] md:h-[90vh] md:my-auto md:rounded-[40px] overflow-hidden relative transition-colors duration-300 flex flex-col safe-top safe-bottom">
         {/* Header - Cleaned up without XP */}
-        <div className="absolute top-0 left-0 w-full h-16 flex justify-between items-center px-6 z-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b border-transparent dark:border-gray-700 flex-shrink-0">
+        <div className="absolute top-0 left-0 w-full h-16 flex justify-between items-center px-6 z-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-b border-transparent dark:border-gray-700 flex-shrink-0 mt-safe-top">
              <div className="font-bold text-gray-400 dark:text-gray-500 tracking-wider text-xs uppercase">滚雪球</div>
              
              <div className="flex items-center gap-4">

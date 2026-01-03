@@ -2,7 +2,8 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Added viewport-fit=cover to handle notches on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>滚雪球 (Snowball)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -76,6 +77,8 @@
         background-color: #f3f4f6;
         color: #1f2937;
         -webkit-font-smoothing: antialiased;
+        /* Prevent bounce scroll on mobile if content fits */
+        overscroll-behavior-y: none;
       }
       /* When dark mode is active on html */
       html.dark body {
@@ -102,6 +105,14 @@
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
+      }
+
+      /* Native App Utilities */
+      .safe-top {
+        padding-top: env(safe-area-inset-top, 20px);
+      }
+      .safe-bottom {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
       }
     </style>
   <script type="importmap">
