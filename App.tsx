@@ -230,28 +230,34 @@ export default function App() {
 
   const renderSummary = () => {
       const totalTime = route.steps.reduce((acc, curr) => acc + curr.timeSpentSeconds, 0);
+      const totalSteps = route.steps.length;
+      
       return (
         <div className="flex flex-col h-full animate-slide-up-fade overflow-hidden">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center flex-shrink-0">客观复盘</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center flex-shrink-0">🎉 庆祝时刻</h2>
+            <p className="text-center text-gray-500 dark:text-gray-400 mb-6 text-sm">你比开始前前进了太多！</p>
             
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-3xl text-center mb-8 flex-shrink-0">
-                <p className="text-gray-500 dark:text-gray-400 mb-1">启动总耗时</p>
-                <div className="text-4xl font-black text-primary dark:text-primary">
-                    {totalTime < 60 ? `${totalTime}秒` : `${Math.floor(totalTime/60)}分 ${totalTime%60}秒`}
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-3xl text-center mb-6 flex-shrink-0 border border-blue-100 dark:border-blue-800/50">
+                <p className="text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wide text-xs font-semibold">你消灭了</p>
+                <div className="text-5xl font-black text-primary dark:text-primary mb-2">
+                    {totalSteps} <span className="text-2xl font-medium text-gray-400">个障碍</span>
+                </div>
+                 <div className="text-sm text-gray-400 dark:text-gray-500 bg-white/50 dark:bg-gray-800/50 rounded-full px-3 py-1 inline-block">
+                    专注投入时长：{totalTime < 60 ? `${totalTime}秒` : `${Math.floor(totalTime/60)}分`}
                 </div>
             </div>
 
             <div className="flex-1 overflow-y-auto pr-2 min-h-0">
-                 <h3 className="font-semibold text-gray-700 dark:text-gray-300 mb-3 sticky top-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-2">执行清单</h3>
+                 <h3 className="font-semibold text-gray-700 dark:text-gray-300 mb-3 sticky top-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-2">征服记录</h3>
                  {route.steps.map((step) => (
-                     <div key={step.id} className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-700 last:border-0">
-                         <span className="text-gray-600 dark:text-gray-400 truncate mr-2">{step.instruction}</span>
-                         <span className="font-mono text-gray-400 dark:text-gray-500 text-sm">{step.timeSpentSeconds}秒</span>
+                     <div key={step.id} className="flex items-center py-3 border-b border-gray-100 dark:border-gray-700 last:border-0 group">
+                         <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-400 flex items-center justify-center mr-3 text-xs">✓</div>
+                         <span className="text-gray-600 dark:text-gray-300 truncate decoration-gray-300">{step.instruction}</span>
                      </div>
                  ))}
             </div>
 
-            <Button className="mt-6 flex-shrink-0" fullWidth onClick={() => setStage(AppStage.REFLECTION)}>下一步</Button>
+            <Button className="mt-6 flex-shrink-0" fullWidth onClick={() => setStage(AppStage.REFLECTION)}>去记录感受</Button>
         </div>
       );
   };

@@ -92,13 +92,21 @@ export const generateAdjustedBreakdown = async (
       The ultimate target goal is: "${targetGoal}".
 
       Please generate a NEW sequence of steps to replace the current step and all subsequent steps.
-      1. Acknowledgement/Regulation (1-2 steps): Address the barrier (e.g. if tired -> rest/stretch; if anxious -> breathe; if missing tool -> find alternative).
+      1. Acknowledgement/Regulation (1-2 steps): Address the barrier. YOU MUST PRIORITIZE PHYSIOLOGICAL REGULATION HERE.
       2. Bridge (1 step): A very small, easy step to get back into motion.
       3. Action (3-5 steps): Continue towards the ultimate goal.
 
       Output in Simplified Chinese (简体中文).`,
       config: {
-        systemInstruction: "You are a compassionate ADHD coach. Re-plan the route based on the user's difficulty. Be flexible and encouraging. JSON output.",
+        systemInstruction: `You are a compassionate ADHD coach. When the user is stuck, your FIRST priority is to help them regulate their nervous system.
+        
+        Unless the barrier is purely physical (like missing a tool), you MUST start the new plan with 1-2 "Physiological Reset" steps such as:
+        - "Drink a glass of warm water" (喝一杯温水)
+        - "Take 3 deep breaths" (做三次深呼吸)
+        - "Close eyes and rest for 30 seconds" (闭眼休息30秒)
+        - "Stand up and stretch" (站起来伸个懒腰)
+        
+        Then provide a tiny bridge step to restart the task. Be gentle and encouraging.`,
         responseMimeType: "application/json",
         responseSchema: RESPONSE_SCHEMA, // Reuse the array schema
         temperature: 0.7,

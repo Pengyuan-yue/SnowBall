@@ -25,7 +25,7 @@ export const StageReflection: React.FC<StageReflectionProps> = ({ onSubmit }) =>
     <div className="flex flex-col h-full py-4 animate-slide-up-fade space-y-8">
       <div className="text-center">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">任务完成</h2>
-        <p className="text-gray-500 dark:text-gray-400">现在感觉如何？</p>
+        <p className="text-gray-500 dark:text-gray-400">简单记录一下你的感受</p>
       </div>
 
       <div className="space-y-8 bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-sm">
@@ -33,9 +33,9 @@ export const StageReflection: React.FC<StageReflectionProps> = ({ onSubmit }) =>
         <div className="space-y-4">
           <div>
             <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 mb-2">
-              <span>昏沉</span>
-              <span className="font-bold text-gray-900 dark:text-gray-200">大脑清醒</span>
-              <span>清醒</span>
+              <span>☁️ 昏沉</span>
+              <span className="font-bold text-gray-900 dark:text-gray-200">大脑清晰度</span>
+              <span>💡 清醒</span>
             </div>
             <input 
               type="range" min="0" max="100" value={focus} 
@@ -46,9 +46,9 @@ export const StageReflection: React.FC<StageReflectionProps> = ({ onSubmit }) =>
 
           <div>
              <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 mb-2">
-              <span>糟糕</span>
-              <span className="font-bold text-gray-900 dark:text-gray-200">情绪状态</span>
-              <span>愉快</span>
+              <span>🌧️ 糟糕</span>
+              <span className="font-bold text-gray-900 dark:text-gray-200">心情</span>
+              <span>☀️ 愉快</span>
             </div>
             <input 
               type="range" min="0" max="100" value={mood} 
@@ -59,9 +59,9 @@ export const StageReflection: React.FC<StageReflectionProps> = ({ onSubmit }) =>
 
           <div>
              <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 mb-2">
-              <span>累了</span>
-              <span className="font-bold text-gray-900 dark:text-gray-200">精力水平</span>
-              <span>精神</span>
+              <span>🔋 没电</span>
+              <span className="font-bold text-gray-900 dark:text-gray-200">能量</span>
+              <span>⚡️ 充沛</span>
             </div>
             <input 
               type="range" min="0" max="100" value={energy} 
@@ -74,19 +74,19 @@ export const StageReflection: React.FC<StageReflectionProps> = ({ onSubmit }) =>
         {/* Self Talk */}
         <div>
            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-             给自己的一句话
+             给自己的一句话（选填）
            </label>
            <textarea 
              className="w-full p-3 bg-gray-50 dark:bg-gray-700 dark:text-white rounded-xl border-none resize-none focus:ring-2 focus:ring-primary/50 placeholder-gray-400 dark:placeholder-gray-500"
              rows={3}
-             placeholder="开始动起来之后其实没那么难..."
+             placeholder="比如：其实我比想象中更棒..."
              value={note}
              onChange={(e) => setNote(e.target.value)}
            />
         </div>
       </div>
 
-      <Button fullWidth onClick={handleSubmit}>保存路线</Button>
+      <Button fullWidth onClick={handleSubmit}>保存到路线库</Button>
     </div>
   );
 };
